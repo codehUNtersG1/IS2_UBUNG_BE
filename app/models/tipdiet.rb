@@ -1,0 +1,2 @@
+class Tipdiet < ApplicationRecord
+end
