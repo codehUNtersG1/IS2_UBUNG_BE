@@ -1,0 +1,2 @@
+class Tipactivity < ApplicationRecord
+end

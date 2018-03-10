@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310175004) do
+ActiveRecord::Schema.define(version: 20180310193204) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
+    t.text "description"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
     t.text "description"
     t.datetime "date"
     t.datetime "created_at", null: false
@@ -28,10 +35,17 @@ ActiveRecord::Schema.define(version: 20180310175004) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "diseases", force: :cascade do |t|
+    t.string "list"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,6 +64,22 @@ ActiveRecord::Schema.define(version: 20180310175004) do
     t.string "type"
     t.text "description"
     t.integer "num_members"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.text "description"
+    t.float "weight"
+    t.integer "height"
+    t.datetime "start"
+    t.datetime "current_time"
+    t.integer "num_achievements"
+    t.integer "num_diets"
+    t.integer "num_physical_activities"
+    t.integer "num_groups"
+    t.integer "num_events"
+    t.string "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,6 +108,12 @@ ActiveRecord::Schema.define(version: 20180310175004) do
     t.text "description"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tipactivities", force: :cascade do |t|
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
