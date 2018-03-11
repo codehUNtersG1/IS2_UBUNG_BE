@@ -1,2 +1,0 @@
-class Physicalactivity < ApplicationRecord
-end

@@ -1,6 +1,6 @@
-class CreatePhysicalactiviys < ActiveRecord::Migration[5.1]
+class CreatePhyactivities < ActiveRecord::Migration[5.1]
   def change
-    create_table :physicalactiviys do |t|
+    create_table :phyactivities do |t|
       t.string :name
       t.text :description
       t.string :duration

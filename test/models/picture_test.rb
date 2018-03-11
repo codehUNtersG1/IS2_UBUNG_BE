@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PhysicalactivityTest < ActiveSupport::TestCase
+class PictureTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
