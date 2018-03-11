@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :tipdiets
   has_and_belongs_to_many :tipactivities
+  validates :name, presence: true
+  validates :email, presence: true , uniqueness: true
+
+
 end
