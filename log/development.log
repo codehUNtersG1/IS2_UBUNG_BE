@@ -1,0 +1,573 @@
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "achievements"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX "index_achievements_on_user_id" ON "achievements" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "achievements_users"[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "achievements_users" ("user_id" integer NOT NULL, "achievement_id" integer NOT NULL)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE  INDEX "index_achievements_users_on_user_id_and_achievement_id" ON "achievements_users" ("user_id", "achievement_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "diets"[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "diets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "start_date" datetime, "end_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "diets_foods"[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "diets_foods" ("diet_id" integer NOT NULL, "food_id" integer NOT NULL)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX "index_diets_foods_on_diet_id_and_food_id" ON "diets_foods" ("diet_id", "food_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "diets_users"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "diets_users" ("user_id" integer NOT NULL, "diet_id" integer NOT NULL)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX "index_diets_users_on_user_id_and_diet_id" ON "diets_users" ("user_id", "diet_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "diseases"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "diseases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "events"[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "start_date" datetime, "end_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "events_users"[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "events_users" ("user_id" integer NOT NULL, "event_id" integer NOT NULL)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX "index_events_users_on_user_id_and_event_id" ON "events_users" ("user_id", "event_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "foods"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "foods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "type" varchar, "description" varchar, "averageprice" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "groups"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "type" varchar, "description" text, "num_members" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "groups_users"[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "groups_users" ("user_id" integer NOT NULL, "group_id" integer NOT NULL)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX "index_groups_users_on_user_id_and_group_id" ON "groups_users" ("user_id", "group_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "histories"[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "histories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "weight" float, "height" integer, "start" datetime, "current_time" datetime, "num_achievements" integer, "num_diets" integer, "num_physical_activities" integer, "num_groups" integer, "num_events" integer, "level" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX "index_histories_on_user_id" ON "histories" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "phyactivities"[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "phyactivities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "duration" varchar, "required_elements" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "phyactivities_plans"[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "phyactivities_plans" ("plan_id" integer NOT NULL, "phyactivity_id" integer NOT NULL)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX "index_phyactivities_plans_on_plan_id_and_phyactivity_id" ON "phyactivities_plans" ("plan_id", "phyactivity_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "pictures"[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "pictures" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "imageable_type" varchar, "imageable_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX "index_pictures_on_imageable_type_and_imageable_id" ON "pictures" ("imageable_type", "imageable_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "places"[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "places" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "latitude" float, "longitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "phyactivity_id" integer, "event_id" integer)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE  INDEX "index_places_on_event_id" ON "places" ("event_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_places_on_event_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_places_on_event_id' AND type='index'
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX "index_places_on_phyactivity_id" ON "places" ("phyactivity_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "plans"[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "plans" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "type" varchar, "description" text, "start_date" datetime, "end_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "plans_users"[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "plans_users" ("user_id" integer NOT NULL, "plan_id" integer NOT NULL)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX "index_plans_users_on_user_id_and_plan_id" ON "plans_users" ("user_id", "plan_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tipactivities"[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "tipactivities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tipactivities_users"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "tipactivities_users" ("user_id" integer NOT NULL, "tipactivity_id" integer NOT NULL)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX "index_tipactivities_users_on_user_id_and_tipactivity_id" ON "tipactivities_users" ("user_id", "tipactivity_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tipdiets"[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "tipdiets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tipdiets_users"[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "tipdiets_users" ("user_id" integer NOT NULL, "tipdiet_id" integer NOT NULL)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX "index_tipdiets_users_on_user_id_and_tipdiet_id" ON "tipdiets_users" ("user_id", "tipdiet_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (10.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20180311135736)[0m
+  [1m[35m (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180310235640),
+(20180310045242),
+(20180310185143),
+(20180311000213),
+(20180310175004),
+(20180311010112),
+(20180310045941),
+(20180311000417),
+(20180310193204),
+(20180310053811),
+(20180311005440),
+(20180311004117),
+(20180311011700),
+(20180310233742),
+(20180311001812),
+(20180310234734),
+(20180311012551),
+(20180310170435),
+(20180311021052),
+(20180310165724),
+(20180311012300),
+(20180310184519),
+(20180310055258),
+(20180311003537),
+(20180310181342),
+(20180307204252),
+(20180311005855),
+(20180307201647),
+(20180311011832);
+
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-13 03:45:15.455343"], ["updated_at", "2018-03-13 03:45:15.455343"]]
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2018-03-13 03:45:15.459956"], ["key", "environment"]]
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2018-03-12 22:49:33 -0500
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.5) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.5) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2018-03-12 22:49:34 -0500
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.5) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.5) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2018-03-12 22:49:34 -0500
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.5) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.5) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20180307201647)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "bio" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180307201647"]]
+  [1m[35m (14.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDiets (20180307204252)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "diets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "start_date" datetime, "end_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180307204252"]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFoods (20180310045242)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "foods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "type" varchar, "description" varchar, "averageprice" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310045242"]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAchievements (20180310045941)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310045941"]]
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePlaces (20180310053811)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "places" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "latitude" float, "longitude" float, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310053811"]]
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTipdiets (20180310055258)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "tipdiets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310055258"]]
+  [1m[35m (3.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePlans (20180310165724)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "plans" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "type" varchar, "description" text, "start_date" datetime, "end_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310165724"]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangeBioToBeTextInUsers (20180310170435)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "bio" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "ausers" ("id","name","email","bio","created_at","updated_at")
+                     SELECT "id","name","email","bio","created_at","updated_at" FROM "users"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "email" varchar DEFAULT NULL, "bio" text DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "users" ("id","name","email","bio","created_at","updated_at")
+                     SELECT "id","name","email","bio","created_at","updated_at" FROM "ausers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ausers"[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310170435"]]
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGroups (20180310175004)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "type" varchar, "description" text, "num_members" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310175004"]]
+  [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTipactivities (20180310181342)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "tipactivities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310181342"]]
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateHistories (20180310184519)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "histories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "weight" float, "height" integer, "start" datetime, "current_time" datetime, "num_achievements" integer, "num_diets" integer, "num_physical_activities" integer, "num_groups" integer, "num_events" integer, "level" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310184519"]]
+  [1m[35m (3.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20180310185143)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310185143"]]
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateEvents (20180310193204)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "start_date" datetime, "end_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310193204"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToHistories (20180310233742)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "histories" ADD "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_histories_on_user_id" ON "histories" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310233742"]]
+  [1m[35m (3.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToAchievements (20180310234734)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "achievements" ADD "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_achievements_on_user_id" ON "achievements" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310234734"]]
+  [1m[35m (3.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUserAchievement (20180310235640)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "achievements_users" ("user_id" integer NOT NULL, "achievement_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_achievements_users_on_user_id_and_achievement_id" ON "achievements_users" ("user_id", "achievement_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180310235640"]]
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUserDiet (20180311000213)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "diets_users" ("user_id" integer NOT NULL, "diet_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_diets_users_on_user_id_and_diet_id" ON "diets_users" ("user_id", "diet_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311000213"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUserPlan (20180311000417)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "plans_users" ("user_id" integer NOT NULL, "plan_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_plans_users_on_user_id_and_plan_id" ON "plans_users" ("user_id", "plan_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311000417"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUserEvent (20180311001812)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "events_users" ("user_id" integer NOT NULL, "event_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_events_users_on_user_id_and_event_id" ON "events_users" ("user_id", "event_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311001812"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUserGroup (20180311003537)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "groups_users" ("user_id" integer NOT NULL, "group_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_groups_users_on_user_id_and_group_id" ON "groups_users" ("user_id", "group_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311003537"]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUserTipDiet (20180311004117)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "tipdiets_users" ("user_id" integer NOT NULL, "tipdiet_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_tipdiets_users_on_user_id_and_tipdiet_id" ON "tipdiets_users" ("user_id", "tipdiet_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311004117"]]
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUserTipactivity (20180311005440)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "tipactivities_users" ("user_id" integer NOT NULL, "tipactivity_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_tipactivities_users_on_user_id_and_tipactivity_id" ON "tipactivities_users" ("user_id", "tipactivity_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311005440"]]
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToComments (20180311005855)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "comments" ADD "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311005855"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableDietFood (20180311010112)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "diets_foods" ("diet_id" integer NOT NULL, "food_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_diets_foods_on_diet_id_and_food_id" ON "diets_foods" ("diet_id", "food_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311010112"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePhyactivities (20180311011700)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "phyactivities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "duration" varchar, "required_elements" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311011700"]]
+  [1m[35m (3.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTablePlanPhyActivity (20180311011832)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "phyactivities_plans" ("plan_id" integer NOT NULL, "phyactivity_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_phyactivities_plans_on_plan_id_and_phyactivity_id" ON "phyactivities_plans" ("plan_id", "phyactivity_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311011832"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPhyactivityToPlaces (20180311012300)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "places" ADD "phyactivity_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_places_on_phyactivity_id" ON "places" ("phyactivity_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311012300"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddEventToPlaces (20180311012551)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "places" ADD "event_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_places_on_phyactivity_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_places_on_phyactivity_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_places_on_event_id" ON "places" ("event_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311012551"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePictures (20180311021052)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "pictures" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "imageable_type" varchar, "imageable_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_pictures_on_imageable_type_and_imageable_id" ON "pictures" ("imageable_type", "imageable_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311021052"]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDiseases (20180311135736)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "diseases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180311135736"]]
+  [1m[35m (3.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-13 03:50:05.673855"], ["updated_at", "2018-03-13 03:50:05.673855"]]
+  [1m[35m (8.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_achievements_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_achievements_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_achievements_users_on_user_id_and_achievement_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_achievements_users_on_user_id_and_achievement_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_diets_foods_on_diet_id_and_food_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_diets_foods_on_diet_id_and_food_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_diets_users_on_user_id_and_diet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_diets_users_on_user_id_and_diet_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_users_on_user_id_and_event_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_users_on_user_id_and_event_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_groups_users_on_user_id_and_group_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_groups_users_on_user_id_and_group_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_histories_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_histories_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_phyactivities_plans_on_plan_id_and_phyactivity_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_phyactivities_plans_on_plan_id_and_phyactivity_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pictures_on_imageable_type_and_imageable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pictures_on_imageable_type_and_imageable_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_places_on_event_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_places_on_event_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_places_on_phyactivity_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_places_on_phyactivity_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_plans_users_on_user_id_and_plan_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_plans_users_on_user_id_and_plan_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tipactivities_users_on_user_id_and_tipactivity_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tipactivities_users_on_user_id_and_tipactivity_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tipdiets_users_on_user_id_and_tipdiet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tipdiets_users_on_user_id_and_tipdiet_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "randomemail@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "randomemail@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Cristian"], ["email", "randomemail@gmail.com"], ["created_at", "2018-03-13 03:51:14.795838"], ["updated_at", "2018-03-13 03:51:14.795838"]]
+  [1m[35m (12.8ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2018-03-12 22:51:26 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/cristian/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/cristian/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (3.7ms)
+Completed 200 OK in 9ms (Views: 4.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-03-12 22:51:36 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 37ms (Views: 9.9ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Started GET "/" for 127.0.0.1 at 2018-03-13 08:17:37 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/cristian/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/cristian/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.8ms)
+Completed 200 OK in 20ms (Views: 18.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-03-13 08:17:48 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 33ms (Views: 7.9ms | ActiveRecord: 1.8ms)
+
+
