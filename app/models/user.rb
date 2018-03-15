@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_one :history
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_and_belongs_to_many :users_comments, :join_table => "users_comments", :class_name => "Achievement"
   has_and_belongs_to_many :users_diets, :join_table => "users_diets", :class_name => "Diet"
   has_and_belongs_to_many :users_plans, :join_table => "users_plans", :class_name => "Plan"
