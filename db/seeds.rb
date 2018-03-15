@@ -1,7 +1,7 @@
 # Test Data generated with faker gem
 
 require 'faker'
-=begin
+
 # Users creation
 puts 'started loading User data'
 
@@ -36,7 +36,7 @@ puts 'started loading Comment data'
 end
 
 puts 'finished loading Comment data'
-=end
+
 
 # Diet creations
 puts 'started loading Diet data'
@@ -49,7 +49,6 @@ end
 
 puts 'finished loading Diet data'
 
-=begin
 # Diet creations
 puts 'started loading Diet data'
 
@@ -96,7 +95,7 @@ puts 'started loading Group data'
 end
 
 puts 'finished loading Group data'
-=begin
+
 # Histories creations
 puts 'started loading History data'
 
@@ -115,7 +114,7 @@ puts 'started loading History data'
 end
 
 puts 'finished loading History data'
-=begin
+
 # Phyactivities creations
 puts 'started loading Phyactivity data'
 
@@ -154,7 +153,7 @@ puts 'started loading Plan data'
 end
 
 puts 'finished loading Plan data'
-=begin
+
 # Tips activities creations
 puts 'started loading Tipactivity data'
 
@@ -172,4 +171,3 @@ puts 'started loading Tipdiet data'
 end
 
 puts 'finished loading Tipdiet data'
-=end
