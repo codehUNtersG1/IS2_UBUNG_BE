@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  weight: 1.5
+  height: 1
+  start: 2018-03-10 13:45:19
+  current_time: 2018-03-10 13:45:19
+  num_achievements: 1
+  num_diets: 1
+  num_physical_activities: 1
+  num_groups: 1
+  num_events: 1
+  level: MyString
+
+two:
+  description: MyText
+  weight: 1.5
+  height: 1
+  start: 2018-03-10 13:45:19
+  current_time: 2018-03-10 13:45:19
+  num_achievements: 1
+  num_diets: 1
+  num_physical_activities: 1
+  num_groups: 1
+  num_events: 1
+  level: MyString
