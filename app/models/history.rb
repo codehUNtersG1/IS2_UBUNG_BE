@@ -1,6 +1,7 @@
 class History < ApplicationRecord
+  belongs_to :user
   validates :description, presence: true, length:  {maximum: 500}
-  validates :weight, presence: true, numericality: { only_integer: true }
+  validates :weight, presence: true, numericality: { only_float: true }
   validates :height, presence: true, numericality: { only_integer: true }
   validates :start, presence: true, timeliness: {type: :datetime}
   validates :current_time, presence: true, timeliness: {type: :datetime}

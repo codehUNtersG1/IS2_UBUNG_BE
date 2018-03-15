@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :plans
   resources :tipactivities #, only: [:show, :destroy]
   resources :tipdiets
+  resources :histories
 
   resources :users do
     resources :histories

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315061935) do
+ActiveRecord::Schema.define(version: 20180315163156) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20180315061935) do
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "sort"
     t.string "description"
     t.string "averageprice"
     t.datetime "created_at", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20180315061935) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "sort"
     t.text "description"
     t.integer "num_members"
     t.datetime "created_at", null: false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20180315061935) do
 
   create_table "plans", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "sort"
     t.text "description"
     t.datetime "start_date"
     t.datetime "end_date"

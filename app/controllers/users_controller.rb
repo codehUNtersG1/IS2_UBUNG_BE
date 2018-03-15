@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
@@ -39,11 +40,13 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
+
 
     # Only allow a trusted parameter "white list" through.
     def user_params

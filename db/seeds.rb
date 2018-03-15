@@ -36,7 +36,7 @@ puts 'started loading Comment data'
 end
 
 puts 'finished loading Comment data'
-
+=end
 
 # Diet creations
 puts 'started loading Diet data'
@@ -49,7 +49,7 @@ end
 
 puts 'finished loading Diet data'
 
-
+=begin
 # Diet creations
 puts 'started loading Diet data'
 
@@ -78,9 +78,9 @@ puts 'started loading Food data'
 
 30.times do |row|
  Food.create(name: Faker::Food.spice,
-  type: Faker::Food.metric_measurement,
-  description: Faker::Food.description,
-  average_price: Faker::Commerce.price)
+  sort: Faker::Food.metric_measurement,
+  description: Faker::Coffee.notes,
+  averageprice: Faker::Commerce.price)
 end
 
 puts 'finished loading Food data'
@@ -90,13 +90,13 @@ puts 'started loading Group data'
 
 30.times do |row|
  Group.create(name: Faker::RockBand.name,
-  type: Faker::StarWars.specie ,
+  sort: Faker::StarWars.specie ,
   description: Faker::StarWars.wookiee_sentence,
   num_members: Faker::Number.between(1, 10))
 end
 
 puts 'finished loading Group data'
-
+=begin
 # Histories creations
 puts 'started loading History data'
 
@@ -115,7 +115,7 @@ puts 'started loading History data'
 end
 
 puts 'finished loading History data'
-
+=begin
 # Phyactivities creations
 puts 'started loading Phyactivity data'
 
@@ -146,7 +146,7 @@ puts 'started loading Plan data'
 
 30.times do |row|
  Plan.create(name: Faker::Superhero.name,
-  type: Faker::Superhero.power ,
+  sort: Faker::Superhero.power ,
   description: Faker::Science.element ,
   start_date: Faker::Date.forward(5),
   end_date: Faker::Date.forward(20))
@@ -154,7 +154,7 @@ puts 'started loading Plan data'
 end
 
 puts 'finished loading Plan data'
-=end
+=begin
 # Tips activities creations
 puts 'started loading Tipactivity data'
 
@@ -172,3 +172,4 @@ puts 'started loading Tipdiet data'
 end
 
 puts 'finished loading Tipdiet data'
+=end
