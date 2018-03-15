@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   has_one :history, dependent: :destroy
   has_one :picture, as: :imageable, dependent: :destroy
   has_many :comments, dependent: :destroy
