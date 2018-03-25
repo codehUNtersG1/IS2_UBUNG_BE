@@ -4,6 +4,8 @@ require 'faker'
 
 # Users creation
 puts 'started loading User data'
+User.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = '<users>'")
 
 30.times do |row|
   User.create(name: Faker::Name.name,
@@ -16,6 +18,8 @@ puts 'finished loading User data'
 
 # Achievements creation
 puts 'started loading Achievement data'
+Achievement.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = '<achievements>'")
 
 30.times do |row|
   Achievement.create(name: Faker::DrWho.catch_phrase,
@@ -28,6 +32,7 @@ puts 'finished loading Achievement data'
 
 # Comments creations
 puts 'started loading Comment data'
+Comment.destroy_all
 
 30.times do |row|
   Comment.create(description: Faker::DrWho.catch_phrase,
@@ -40,6 +45,8 @@ puts 'finished loading Comment data'
 
 # Diet creations
 puts 'started loading Diet data'
+Diet.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = '<diets>'")
 
 30.times do |row|
   Diet.create(name: Faker::Food.dish,
@@ -49,19 +56,10 @@ end
 
 puts 'finished loading Diet data'
 
-# Diet creations
-puts 'started loading Diet data'
-
-30.times do |row|
-  Diet.create(name: Faker::Food.dish,
-  start_date: Faker::Date.forward(15),
-  end_date: Faker::Date.forward(40))
-end
-
-puts 'finished loading Diet data'
 
 # Events creations
 puts 'started loading Event data'
+Event.destroy_all
 
 30.times do |row|
  Event.create(name: Faker::SiliconValley.invention,
@@ -74,6 +72,9 @@ puts 'finished loading Event data'
 
 # Foods creations
 puts 'started loading Food data'
+Food.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = '<foods>'")
+
 
 30.times do |row|
  Food.create(name: Faker::Food.spice,
@@ -86,6 +87,7 @@ puts 'finished loading Food data'
 
 # Groups creations
 puts 'started loading Group data'
+Group.destroy_all
 
 30.times do |row|
  Group.create(name: Faker::RockBand.name,
@@ -98,7 +100,7 @@ puts 'finished loading Group data'
 
 # Histories creations
 puts 'started loading History data'
-
+History.destroy_all
 30.times do |row|
  History.create(description: Faker::HarryPotter.house,
   weight: Faker::Number.decimal(2) ,
@@ -117,6 +119,7 @@ puts 'finished loading History data'
 
 # Phyactivities creations
 puts 'started loading Phyactivity data'
+Phyactivity.destroy_all
 
 30.times do |row|
  Phyactivity.create(name: Faker::Hacker.noun,
@@ -129,6 +132,9 @@ puts 'finished loading Phyactivity data'
 
 # Places creations
 puts 'started loading Place data'
+Place.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = '<place>'")
+
 
 30.times do |row|
  Place.create(name: Faker::StarWars.planet,
@@ -142,7 +148,7 @@ puts 'finished loading Place data'
 
 # Plans creations
 puts 'started loading Plan data'
-
+Plan.destroy_all
 30.times do |row|
  Plan.create(name: Faker::Superhero.name,
   sort: Faker::Superhero.power ,
@@ -156,6 +162,7 @@ puts 'finished loading Plan data'
 
 # Tips activities creations
 puts 'started loading Tipactivity data'
+Tipactivity.destroy_all
 
 30.times do |row|
  Tipactivity.create(description: Faker::RuPaul.quote)
@@ -165,6 +172,7 @@ puts 'finished loading Tipactivity data'
 
 # Tips diets creations
 puts 'started loading Tipdiet data'
+Tipdiet.destroy_all
 
 30.times do |row|
  Tipdiet.create(description: Faker::Simpsons.quote)

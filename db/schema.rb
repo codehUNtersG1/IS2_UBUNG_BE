@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315163156) do
+ActiveRecord::Schema.define(version: 20180316163539) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20180315163156) do
 
   create_table "users_tip_diets", id: false, force: :cascade do |t|
     t.integer "user_id"
-    t.integer "achievement_id"
+    t.integer "tipdiet_id"
   end
 
 end
