@@ -1,6 +1,22 @@
+# == Schema Information
+#
+# Table name: diets
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  start_date :datetime
+#  end_date   :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Diet < ApplicationRecord
-  has_and_belongs_to_many :users, :join_table => "users_diets", :class_name => "User"
-  has_and_belongs_to_many :foods, :join_table => "diets_foods", :class_name => "Food"
+  has_many :userdietrecords
+  has_many :users, through: :userdietrecords
+
+  has_many :dietfoodrecords
+  has_many :foods, through: :dietfoodrecords
+
   validates :name, presence: true , length:  {maximum: 50}
   validates :start_date, presence: true , timeliness: {type: :datetime}
   validates :end_date, presence: true, timeliness: {type: :datetime}

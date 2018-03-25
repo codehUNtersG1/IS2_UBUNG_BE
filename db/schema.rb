@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316163539) do
+ActiveRecord::Schema.define(version: 20180325230636) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -29,17 +29,19 @@ ActiveRecord::Schema.define(version: 20180316163539) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "dietfoodrecords", force: :cascade do |t|
+    t.integer "diet_id"
+    t.integer "food_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "diets", force: :cascade do |t|
     t.string "name"
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "diets_foods", id: false, force: :cascade do |t|
-    t.integer "diet_id"
-    t.integer "food_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -118,6 +120,13 @@ ActiveRecord::Schema.define(version: 20180316163539) do
     t.index ["phyactivity_id"], name: "index_places_on_phyactivity_id"
   end
 
+  create_table "planphyactivityrecords", force: :cascade do |t|
+    t.integer "plan_id"
+    t.integer "phyactivity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.string "sort"
@@ -126,11 +135,6 @@ ActiveRecord::Schema.define(version: 20180316163539) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "plans_physical_activities", id: false, force: :cascade do |t|
-    t.integer "plan_id"
-    t.integer "phyactivity_id"
   end
 
   create_table "tipactivities", force: :cascade do |t|
@@ -145,6 +149,41 @@ ActiveRecord::Schema.define(version: 20180316163539) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "userachievementrecords", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "achievement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "userdietrecords", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "diet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usereventrecords", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usergrouprecords", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "userplanrecords", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -153,39 +192,18 @@ ActiveRecord::Schema.define(version: 20180316163539) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users_comments", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "achievement_id"
-  end
-
-  create_table "users_diets", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "diet_id"
-  end
-
-  create_table "users_events", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
-  end
-
-  create_table "users_groups", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-  end
-
-  create_table "users_plans", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "plan_id"
-  end
-
-  create_table "users_tip_activities", id: false, force: :cascade do |t|
+  create_table "usertipactivityrecords", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tipactivity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users_tip_diets", id: false, force: :cascade do |t|
+  create_table "usertipdietrecords", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tipdiet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
