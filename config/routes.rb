@@ -148,6 +148,8 @@
 # 
 
 Rails.application.routes.draw do
+  resources :placephyactivityrecords
+  resources :eventplacerecords
   resources :planphyactivityrecords
   resources :dietfoodrecords
   resources :usertipactivityrecords

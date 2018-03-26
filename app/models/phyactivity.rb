@@ -15,7 +15,9 @@ class Phyactivity < ApplicationRecord
   has_many :planphyactivityrecords
   has_many :plans, through: :planphyactivityrecords
 
-  has_one :place
+  has_many :placephyactivityrecords
+  has_many :places, through: :placephyactivityrecords
+
   has_many :pictures, as: :imageable, dependent: :destroy
 
   validates :name, presence: true, length:  {maximum: 50}

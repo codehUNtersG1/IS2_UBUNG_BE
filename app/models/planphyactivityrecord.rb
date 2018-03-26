@@ -10,6 +10,6 @@
 #
 
 class Planphyactivityrecord < ApplicationRecord
-  belongs_to :plans
+  belongs_to :plan
   belongs_to :phyactivity
 end

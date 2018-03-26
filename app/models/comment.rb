@@ -13,5 +13,5 @@
 class Comment < ApplicationRecord
   validates :description, presence: true , length:  {maximum: 500}
   validates :date, presence: true, timeliness: {type: :datetime}
-
+  validates :user_id, presence: true
 end

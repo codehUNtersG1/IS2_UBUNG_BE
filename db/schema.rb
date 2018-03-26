@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325230636) do
+ActiveRecord::Schema.define(version: 20180326040416) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20180325230636) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "eventplacerecords", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -73,7 +80,7 @@ ActiveRecord::Schema.define(version: 20180325230636) do
 
   create_table "histories", force: :cascade do |t|
     t.text "description"
-    t.float "weight"
+    t.integer "weight"
     t.integer "height"
     t.datetime "start"
     t.datetime "current_time"
@@ -107,6 +114,13 @@ ActiveRecord::Schema.define(version: 20180325230636) do
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
   end
 
+  create_table "placephyactivityrecords", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "phyactivity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "places", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -114,15 +128,11 @@ ActiveRecord::Schema.define(version: 20180325230636) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "phyactivity_id"
-    t.integer "event_id"
-    t.index ["event_id"], name: "index_places_on_event_id"
-    t.index ["phyactivity_id"], name: "index_places_on_phyactivity_id"
   end
 
   create_table "planphyactivityrecords", force: :cascade do |t|
     t.integer "plan_id"
-    t.integer "phyactivity"
+    t.integer "phyactivity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

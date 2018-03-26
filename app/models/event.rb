@@ -15,7 +15,9 @@ class Event < ApplicationRecord
   has_many :usereventrecords
   has_many :users, through: :usereventrecords
 
-  has_one :place
+  has_many :eventplacerecords
+  has_many :places, through: :eventplacerecords
+
   has_one :picture, as: :imageable, dependent: :destroy
 
   validates :name, presence: true,length:   {maximum: 50}

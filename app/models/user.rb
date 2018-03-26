@@ -12,6 +12,9 @@
 
 class User < ApplicationRecord
 
+  #Queries implementadas a través de scopes
+  scope :query1, -> { User.first(3) }
+
   has_one :history, dependent: :destroy
   has_one :picture, as: :imageable, dependent: :destroy
 
@@ -39,8 +42,14 @@ class User < ApplicationRecord
   has_many :tipactivities, through: :usertipactivityrecords
 
 
-  validates :name, presence: true , length:  {maximum: 50}
-  validates :email, presence: true , uniqueness: true
-  validates_format_of :name, :with => /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/
-  validates_format_of :email, :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :name, presence: true #, length:  {maximum: 60}
+  validates :email, presence: true #, uniqueness: true
+  #validates_format_of :name, :with => /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/
+  #validates_format_of :email, :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+
+
+
+
+
 end
