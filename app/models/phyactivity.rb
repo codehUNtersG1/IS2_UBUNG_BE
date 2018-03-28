@@ -12,6 +12,9 @@
 #
 
 class Phyactivity < ApplicationRecord
+
+  #Relaciones, dependencias y validaciones
+
   has_many :planphyactivityrecords
   has_many :plans, through: :planphyactivityrecords
 
@@ -24,4 +27,13 @@ class Phyactivity < ApplicationRecord
   validates :description, presence: true, length:  {maximum: 500}
   validates :duration, presence: true
   validates :required_elements, presence: true , length:  {maximum: 300}
+
+  #Queries implementadas a través de scopes
+
+  #encontrar la duración total de todas las actividades físicas propuestas dentro de un plan específico
+  scope :totalDuration, -> (plan){Phyactivity.joins(:planphyactivityrecords).where("plan_id LIKE ?",plan).sum(:duration)}
+
+  #encontrar todas las actividades físicas que requieren para su desarrollo el elemento "tool"
+  scope :toolRequired, ->(tool){Phyactivity.where("required_elements LIKE ?","%#{tool}%").select("id, name").all.to_a}
+
 end

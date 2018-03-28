@@ -87,7 +87,7 @@ num_records.times do |row|
  Food.create(name: Faker::Food.spice,
   sort: Faker::Food.metric_measurement,
   description: Faker::Coffee.notes,
-  averageprice: Faker::Commerce.price)
+  averageprice: Faker::Number.between(4000, 10000))
 end
 
 puts 'finished loading Food data'
@@ -139,7 +139,7 @@ Phyactivity.reset_pk_sequence
 num_records.times do |row|
  Phyactivity.create(name: Faker::Hacker.noun,
   description: Faker::Hacker.say_something_smart ,
-  duration: Faker::Number.between(10, 20) ,
+  duration: Faker::Number.between(1, 3) ,
   required_elements: Faker::Beer.name)
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328035040) do
+ActiveRecord::Schema.define(version: 20180328160302) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180328035040) do
     t.string "name"
     t.string "sort"
     t.string "description"
-    t.string "averageprice"
+    t.integer "averageprice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
