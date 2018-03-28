@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
+#  sort       :text
 #  start_date :datetime
 #  end_date   :datetime
 #  created_at :datetime         not null

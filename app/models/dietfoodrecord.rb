@@ -10,6 +10,13 @@
 #
 
 class Dietfoodrecord < ApplicationRecord
+
+  #Relaciones, dependencias y validaciones
+
   belongs_to :diet
   belongs_to :food
+
+  validates :diet_id, presence: true
+  validates :food_id, presence: true
+
 end

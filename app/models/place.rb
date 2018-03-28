@@ -30,6 +30,13 @@ class Place < ApplicationRecord
 
   #Queries implementadas a través de scopes
 
-  
+  #encontrar los lugares (id,nombre y ubicación) que contengan en su nombre la palabra "name"
+  scope :findByName, ->(name){Place.where("name LIKE ?", "%#{name}%").pluck(:id,:name,:location)}
+
+  #consultar únicamente la latitud y longitud de los lugares de la base de datos de la aplicación
+  scope :coordinates, -> {Place.pluck(:latitude,:longitude)}
+
+  #consultar la latitud y longitud de un lugar especificado por su id
+  scope :location, -> (id){Place.where("id LIKE ?", id).pluck(:latitude,:longitude)}
 
 end

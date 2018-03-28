@@ -14,4 +14,11 @@ class Tipdiet < ApplicationRecord
 
   validates :description, presence: true , length:  {maximum: 500}
 
+  #consultar los tips que se le han dado al usuario con id "user_id"
+  scope :tipsForUser, ->(user_id) {Tipdiet.joins(:usertipdietrecords).where("user_id LIKE ? ",user_id).pluck(:description)}
+
+  #consultar el numero de tips que se le han dado a un usuario desde que empezó a usar la aplicación
+  scope :totalTips, ->(user_id) {Tipdiet.joins(:usertipdietrecords).where("user_id LIKE ?", user_id).count}
+
+
 end

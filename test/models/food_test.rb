@@ -6,7 +6,7 @@
 #  name         :string
 #  sort         :string
 #  description  :string
-#  averageprice :string
+#  averageprice :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

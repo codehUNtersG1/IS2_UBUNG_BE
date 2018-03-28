@@ -10,6 +10,13 @@
 #
 
 class Eventplacerecord < ApplicationRecord
+
+  #Relaciones, dependencias y validaciones
+
   belongs_to :event
   belongs_to :place
+
+  validates :event_id, presence: true
+  validates :place_id, presence: true
+
 end
