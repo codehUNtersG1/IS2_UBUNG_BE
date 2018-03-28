@@ -41,10 +41,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
   gem 'will_paginate', '~> 3.0'
-  # Use for restart id to 0 
+  # Use for restart id to 0
   gem 'activerecord-reset-pk-sequence'
   # Use for generate fake data
   gem 'faker', require: false
+  # gem for authentication
+  gem 'knock'
 
 end
 
