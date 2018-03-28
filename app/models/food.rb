@@ -12,6 +12,9 @@
 #
 
 class Food < ApplicationRecord
+
+  #Relaciones, dependencias y validaciones
+
   has_many :dietfoodrecords
   has_many :diets, through: :dietfoodrecords
 
@@ -21,4 +24,13 @@ class Food < ApplicationRecord
   validates :sort, presence: true
   validates :name, presence: true , length:  {maximum: 30}
   validates :averageprice, presence: true
+
+  #Queries implementadas a través de scopes
+
+  #consultar las comidas por nombre y tipo únicamente
+  scope :foodNameSort, -> {Food.select("name,sort").all.to_a}
+
+  #consultar el precio promedio de una comida sugerida por la aplicación
+  scope :averageFood, -> {Food.average("averageprice")}
+
 end

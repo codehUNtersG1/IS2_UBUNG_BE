@@ -55,6 +55,7 @@ Diet.reset_pk_sequence
 
 num_records.times do |row|
   Diet.create(name: Faker::Food.dish,
+  sort: Faker::Food.measurement,
   start_date: Faker::Date.forward(15),
   end_date: Faker::Date.forward(40))
 end
@@ -216,10 +217,11 @@ puts 'finished loading Dietfoodrecord data'
 puts 'started loading Eventplacerecord data'
 Eventplacerecord.destroy_all
 Eventplacerecord.reset_pk_sequence
-
+id=1
 num_records.times do |row|
- Eventplacerecord.create(event_id: Faker::Number.between(1, num_records),
+ Eventplacerecord.create(event_id: id,
   place_id: Faker::Number.between(1, num_records))
+  id+=1
 end
 
 puts 'finished loading Eventplacerecord data'
