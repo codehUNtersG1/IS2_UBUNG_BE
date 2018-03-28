@@ -12,8 +12,7 @@
 
 class User < ApplicationRecord
 
-  #Queries implementadas a través de scopes
-  scope :query1, -> { User.first(3) }
+  #Relaciones, dependencias y validaciones
 
   has_one :history, dependent: :destroy
   has_one :picture, as: :imageable, dependent: :destroy
@@ -48,8 +47,25 @@ class User < ApplicationRecord
   #validates_format_of :email, :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 
+  #Queries implementadas a través de scopes
 
+  #usuarios con nombres que empiezan con "start"
+  scope :filterName, -> (start){User.where("name LIKE ?", "#{start}%").all.to_a}
 
+  #usuarios que han sido creados en una fecha anterior a "time"
+  scope :created_before, ->(time) {User.where("created_at < ?", time).all.to_a }
+
+  #usuarios con un email cuyo dominio es "@yahoo.com"
+  scope :yahooEmail, -> {User.where("email LIKE ?", "%yahoo.com").all.to_a}
+
+  #seleccionar y consultar únicamente los campos "id","name" y "email" del total de usuarios existentes
+  scope :selectNameEmail, -> {User.select("id, name, email").all.to_a}
+
+  #filtrar únicamente el id y correo de los usuarios cuya edad (registrada en su historia) es mayor a 20
+  scope :usersOlderThan20, -> {User.joins(:history).where('age > 20').pluck(:id, :email)}
+
+  #filtrar el id y el email de los usuarios que han conseguido el logro con id = "id"
+  scope :usersAchievement, -> (ach_id){User.joins(:userachievementrecords).where('achievement_id LIKE ?',ach_id).pluck(:id, :email)}
 
 
 end

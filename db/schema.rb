@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326040416) do
+ActiveRecord::Schema.define(version: 20180327234523) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -80,13 +80,15 @@ ActiveRecord::Schema.define(version: 20180326040416) do
 
   create_table "histories", force: :cascade do |t|
     t.text "description"
+    t.string "genre"
+    t.date "birth_date"
+    t.integer "age"
     t.integer "weight"
     t.integer "height"
     t.datetime "start"
-    t.datetime "current_time"
     t.integer "num_achievements"
     t.integer "num_diets"
-    t.integer "num_physical_activities"
+    t.integer "num_plans"
     t.integer "num_groups"
     t.integer "num_events"
     t.string "level"

@@ -4,10 +4,12 @@
 #
 #  id                      :integer          not null, primary key
 #  description             :text
+#  genre                   :string
+#  birth_date              :date
+#  age                     :integer
 #  weight                  :float
 #  height                  :integer
 #  start                   :datetime
-#  current_time            :datetime
 #  num_achievements        :integer
 #  num_diets               :integer
 #  num_physical_activities :integer

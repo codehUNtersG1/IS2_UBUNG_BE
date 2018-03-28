@@ -112,13 +112,15 @@ History.reset_pk_sequence
 id = 1
 num_records.times do |row|
  History.create(description: Faker::HarryPotter.house,
-  weight: Faker::Number.between(150, 190) ,
+  genre: Faker::Dog.gender,
+  birth_date: Faker::Date.birthday(17, 28),
+  age: Faker::Number.between(17, 28),
+  weight: Faker::Number.between(40, 90) ,
   height: Faker::Number.between(120, 190),
   start: Faker::Date.forward(4),
-  current_time: Time.now,
   num_achievements: Faker::Number.between(1, 10),
   num_diets: Faker::Number.between(1, 10),
-  num_physical_activities: Faker::Number.between(1, 10),
+  num_plans: Faker::Number.between(1, 10),
   num_groups: Faker::Number.between(1, 10),
   num_events: Faker::Number.between(1, 10),
   level: Faker::Hacker.noun,
