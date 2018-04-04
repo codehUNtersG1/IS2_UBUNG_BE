@@ -46,6 +46,6 @@ class AchievementsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def achievement_params
-      params.fetch(:achievement, {})
+      params.require(:achievement).permit(:name,:description,:date)
     end
 end
