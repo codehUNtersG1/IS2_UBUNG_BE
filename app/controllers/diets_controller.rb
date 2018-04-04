@@ -46,6 +46,6 @@ class DietsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def diet_params
-      params.require(:diet).permit(:name,:start_date,:end_date)
+      params.fetch(:diet, {})
     end
 end
