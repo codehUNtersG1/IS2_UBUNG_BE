@@ -49,6 +49,7 @@ group :development do
   gem 'knock'
 
   gem 'active_model_serializers', '~> 0.10.0'
+  gem 'rack-cors', :require => 'rack/cors'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
