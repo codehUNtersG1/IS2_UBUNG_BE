@@ -50,6 +50,9 @@ group :development do
 
   gem 'active_model_serializers', '~> 0.10.0'
   gem 'rack-cors', :require => 'rack/cors'
+  gem 'devise_token_auth', '~> 0.1.36'
+  gem 'omniauth', '~> 1.3', '>= 1.3.1'
+  gem "omniauth-google-oauth2", "~> 0.2.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
