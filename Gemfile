@@ -30,7 +30,7 @@ end
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
-
+gem 'rack-cors', :require => 'rack/cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -51,7 +51,7 @@ group :development do
   gem 'knock'
 
   gem 'active_model_serializers', '~> 0.10.0'
-  gem 'rack-cors', :require => 'rack/cors'
+  #gem 'rack-cors', :require => 'rack/cors'
   gem 'devise_token_auth', '~> 0.1.36'
   gem 'omniauth', '~> 1.3', '>= 1.3.1'
   gem "omniauth-google-oauth2", "~> 0.2.1"
