@@ -16,7 +16,7 @@ class UserMailer < ApplicationMailer
 
   def achievement_email(user)
     @user = user
-    @url = 'http://example.com/login'
+    @url = 'http://example.com/loginSS'
 
     mail(to: @user.email,
         subject: "Felicidades, has alcanzado otro logro en Ubung!")do |format|
